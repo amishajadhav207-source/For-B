@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: pink;
+  text-align: center;
+  overflow: hidden;
+}
+
+.screen {
+  display: none;
+  padding: 20px;
+}
+
+#main {
+  display: block;
+}
+
+h1, h2 {
+  color: #b30059;
+}
+
+button {
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 15px;
+}
+
+#yesBtn {
+  background: #ff4da6;
+  color: white;
+}
+
+#noBtn {
+  background: #3498db;
+  color: white;
+  position: absolute;
+}
+
+iframe {
+  max-width: 90%;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+img {
+  width: 260px;
+  max-width: 80%;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 25px rgba(255,0,120,0.7);
+}
+
+.heart {
+  position: fixed;
+  font-size: 22px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: red;
+  animation: confetti 3s linear forwards;
+}
+
+@keyframes confetti {
+  from { transform: translateY(0); }
+  to { transform: translateY(100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MAIN -->
+<div id="main" class="screen">
+  <h1>Will you be my Valentine, Gaurav ❤️💙😋?</h1>
+  <button id="yesBtn">Obviously YES 😍</button>
+  <button id="noBtn">No 😐</button>
+</div>
+
+<!-- NO -->
+<div id="noScreen" class="screen">
+  <h1>whyyyyy 🥹</h1>
+  <iframe src="https://www.youtube.com/embed/1ysGA9ZEEfE?autoplay=1"
+    allow="autoplay"></iframe>
+  <h2>you will never see the light of day<br>SAY YES RN 😡🫵🏻</h2>
+</div>
+
+<!-- YES -->
+<div id="yesScreen" class="screen">
+  <h1>i love you so much baby 😍</h1>
+
+  <iframe
+    src="https://www.redditmedia.com/r/cats/comments/1fmsakp/happy_happy_happy_cat/"
+    allowfullscreen></iframe>
+
+  <img src="love.png" alt="Us 💖">
+
+  <!-- MUSIC -->
+  <iframe width="1" height="1"
+    src="https://www.youtube.com/embed/7fTHD07Q9Pw?autoplay=1&loop=1">
+  </iframe>
+</div>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+function moveNo() {
+  noBtn.style.left = Math.random() * 70 + "vw";
+  noBtn.style.top = Math.random() * 70 + "vh";
+}
+
+yesBtn.onclick = () => {
+  document.getElementById("main").style.display = "none";
+  document.getElementById("yesScreen").style.display = "block";
+  confettiBlast();
+};
+
+function confettiBlast() {
+  for (let i = 0; i < 120; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background =
+      ["#ff4da6","#3498db","#e74c3c"][Math.floor(Math.random()*3)];
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
+  }
+}
+
+// Floating hearts everywhere
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = ["❤️","💙","💖"][Math.floor(Math.random()*3)];
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 250);
+</script>
+
+</body>
+</html>
